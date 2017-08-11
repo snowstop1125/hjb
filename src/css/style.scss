@@ -1,0 +1,90 @@
+body {
+    background: #f3f3f3;
+}
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div, dl, dt, dd, input { margin: 0; padding: 0; border: 0; }
+body { font-size: 20px; font-family: '\65B0\5B8B\4F53', '\5B8B\4F53', Verdana; }
+ul, ol { list-style-type: none; }
+select, input, img { vertical-align: middle; outline: none; display: block; }
+a { text-decoration: none; color: #000; }
+a { blr: expression(this.onFocus=this.blur())
+}
+i{ font-style: normal;}
+a { outline: none; }
+html { overflow-x: hidden; }
+.clearfix:after { content: ""; display: block; clear: both; }
+.clearfix { zoom: 1; }
+.fl { float: left; }
+.fr { float: right; }
+button{ background: none;
+  border: none;}
+
+
+@mixin mc($bg:#ff612a) {
+    background: $bg;
+    color: #fff;
+}
+
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #666;
+    width: 2560px;
+    margin: 0 auto;
+    background: #fff;
+    height: 1315px;
+}
+.LeftMain {
+    width: 600px;
+    float: left;
+    height: 100%;
+    position: relative;
+    box-shadow: 3px 1px 8px #ccc;
+    -webkit-box-shadow: 3px 1px 8px #ccc;
+    -moz-box-shadow: 3px 1px 8px #ccc;
+    .title{
+        height: 120px;
+        line-height: 120px;
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        @include mc();
+    }
+    .leftBtn {
+        height: 280px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #212121;
+        a{
+            width: 545px;
+            height: 97px;
+            text-align: center;
+            line-height: 97px;
+            display: block;
+            margin: 35px auto 0;
+            border-radius: 8px;
+            @include mc();
+            font-size: 30px;
+        }
+        .search_btn {
+            background: #373634;
+            margin-top: 20px;
+        }
+    }
+}
+.cart,.search,.index1{ float: left;}
+.header{
+  width:1960px;
+  height:120px;
+    @include mc();
+  line-height:120px;
+  font-size:35px;
+  p{
+    float: left;
+    padding-left:20px;
+  }
+  button{ float: right;}
+}
+
