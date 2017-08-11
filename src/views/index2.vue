@@ -2,7 +2,7 @@
   <div class="app clearfix">
     <left-main></left-main>
     <section class="right-main">
-      <h1>有目的地</h1>
+      <h1>没有目的地</h1>
       <div class="startMain">
         <div class="focus">
 
@@ -20,7 +20,7 @@
     import leftMain from '../components/left-main'
 export default {
   name: 'app',
-    components: { leftMain},
+    components: { leftMain },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

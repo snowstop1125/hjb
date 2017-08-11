@@ -1,6 +1,9 @@
 <template>
   <div class="LeftMain">
     <div class="title">候机宝</div>
+    <section class="main">
+
+    </section>
     <div class="leftBtn">
       <router-link to="/cart">购物车</router-link>
       <router-link class="search_btn" to="/search">搜索（商家/商品）</router-link>

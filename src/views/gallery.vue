@@ -2,8 +2,8 @@
   <div class="search clearfix">
     <left-main></left-main>
     <section class="right-main">
-      <head-main :head-title="headTitle" ></head-main>
-
+      <head-main :head-title="headTitle"></head-main>
+      <h1>列表页</h1>
     </section>
 
 
@@ -19,7 +19,7 @@ export default {
     components: { leftMain, headMain },
   data () {
     return {
-        headTitle: '搜索'
+       headTitle: '商品列表页'
     }
   }
 }

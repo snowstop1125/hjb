@@ -9,46 +9,47 @@ a { text-decoration: none; color: #000; }
 a { blr: expression(this.onFocus=this.blur())
 }
 i{ font-style: normal;}
-a { outline: none; }
+a { outline: none; color:inherit; }
 html { overflow-x: hidden; }
 .clearfix:after { content: ""; display: block; clear: both; }
 .clearfix { zoom: 1; }
 .fl { float: left; }
 .fr { float: right; }
-button{ background: none;
-  border: none;}
+.fz30{font-size: 30px;}
+button{ background: none; border: none; padding:0;}
 
 
-@mixin mc($bg:#ff612a) {
-    background: $bg;
-    color: #fff;
-}
+$bodyWidth: 2560px;
+$bodyHeight: 1315px;
+$leftWidth:600px;
+
 
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #666;
-    width: 2560px;
+    width: $bodyWidth;
     margin: 0 auto;
     background: #fff;
-    height: 1315px;
+    height: $bodyHeight;
 }
 .LeftMain {
-    width: 600px;
+    width: $leftWidth;
     float: left;
-    height: 100%;
+    height: $bodyHeight;
     position: relative;
-    box-shadow: 3px 1px 8px #ccc;
-    -webkit-box-shadow: 3px 1px 8px #ccc;
-    -moz-box-shadow: 3px 1px 8px #ccc;
+    @include box-shadow(1px 0px 37px rgba(0, 0, 0, 0.25));
     .title{
+        @include font(36px,120px);
         height: 120px;
-        line-height: 120px;
         width: 100%;
         text-align: center;
-        font-size: 36px;
-        @include mc();
+        @include bgc();
+    }
+    .main{
+        background: #464646;
+        height: $bodyHeight - 399px;
     }
     .leftBtn {
         height: 280px;
@@ -61,12 +62,11 @@ button{ background: none;
             width: 545px;
             height: 97px;
             text-align: center;
-            line-height: 97px;
             display: block;
             margin: 35px auto 0;
-            border-radius: 8px;
-            @include mc();
-            font-size: 30px;
+            @include border-radius();
+            @include bgc();
+            @include font(30px, 97px);
         }
         .search_btn {
             background: #373634;
@@ -74,17 +74,22 @@ button{ background: none;
         }
     }
 }
-.cart,.search,.index1{ float: left;}
+.right-main{ float: left; width: $bodyWidth - $leftWidth;}
 .header{
-  width:1960px;
   height:120px;
-    @include mc();
-  line-height:120px;
-  font-size:35px;
+    @include bgc($yellow);
+    @include font(35px, 120px);
   p{
     float: left;
     padding-left:20px;
   }
-  button{ float: right;}
+  button{
+      float: right;
+      @extend .fz30;
+      line-height:120px;
+      color: #ffffff;
+      background:#e28a26;
+      padding: 0 60px 0 100px;
+  }
 }
 
