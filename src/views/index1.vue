@@ -5,7 +5,7 @@
       <h1>有目的地</h1>
       <div class="startMain">
         <div class="focus">
-
+          <router-link  to="/gallery">去列表页</router-link>
         </div>
       </div>
       <div class="endMain">

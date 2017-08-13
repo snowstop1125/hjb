@@ -7,6 +7,7 @@ import cart from '../views/cart'
 // import search from '@/views/search'
 const search = r => require.ensure([], () => r(require('../views/search')), 'search')
 const gallery = r => require.ensure([], () => r(require('../views/gallery')), 'gallery')
+const product = r => require.ensure([], () => r(require('../views/product')), 'product')
 
 Vue.use(Router)
 
@@ -45,6 +46,11 @@ export default new Router({
           path: '/search',
           name: '搜索页',
           component: search
-      }
+      },
+    {
+      path: '/product',
+      name: '商品详情页',
+      component: product
+    }
   ]
 })

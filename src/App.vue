@@ -5,8 +5,8 @@
 </template>
 
 
-<style lang="scss">
-  @import './css/mixin';
-  @import './css/style';
+<style lang="stylus">
+  @import './css/mixin.styl';
+  @import './css/style.styl';
 </style>
 

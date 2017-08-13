@@ -2,7 +2,7 @@
   <div class="header">
     <p>
       <router-link to="/">主页</router-link>
-      <router-link to="/">{{headTitle}}</router-link>
+      <router-link to="">{{headTitle}}</router-link>
     </p>
     <button v-if="category">分类</button>
   </div>

@@ -3,8 +3,8 @@
     <left-main></left-main>
     <section class="right-main">
       <head-main :head-title="headTitle"></head-main>
-      <h1>列表页</h1>
-      <router-link  to="/product">去商品详情页</router-link>
+      <h1>商品详情页</h1>
+
     </section>
 
 
