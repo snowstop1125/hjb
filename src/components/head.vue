@@ -4,19 +4,41 @@
       <router-link to="/">主页</router-link>
       <router-link to="">{{headTitle}}</router-link>
     </p>
-    <button v-if="category">分类</button>
+    <button v-if="category" @click="showCategoryBox">分类</button>
+    <div class="cover" v-if="isShow" @click="showCategoryBox"></div>
+    <div v-if="category" class="category-box" :class="{show:isShow}">
+      <h3>分类列表</h3>
+      <ol class="clearfix">
+        <li v-for="item in categoryList">
+          <router-link to="/gallery">{{item.name}}</router-link>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'header',
-  data () {
-    return {
-        msg: 'Welcome to Your Vue.js App'
+    export default {
+        name: 'header',
+        data () {
+            return {
+                isShow:false,
+                categoryList:[
+                    {name:'全部'},
+                    { name: '热门推荐' },
+                    { name: '热门推荐' },
+                    { name: '热门推荐' },
+                    { name: '热门推荐' },
+                    { name: '热门推荐' }, { name: '热门推荐' }, { name: '热门推荐' }, { name: '热门推荐' }, { name: '热门推荐' },
+                ]
+            }
+        },
+        props: ['headTitle', 'category'],
+        methods: {
+            showCategoryBox: function () {
+                this.isShow=!this.isShow;
+            }
+        }
     }
-  },
-    props: ['headTitle','category'],
-}
 </script>
 
