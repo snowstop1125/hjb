@@ -18,7 +18,7 @@ ul, ol {
 select, input, img {
   vertical-align: middle;
   outline: none;
-  display: block;
+  display: inline-block;
 }
 a {
   text-decoration: none;
@@ -101,7 +101,7 @@ button {
   height: $bodyHeight;
   position: relative;
   box-shadow(1px 0px 37px rgba(0, 0, 0, 0.25));
-  .title {
+  & > .title {
     font(36px, 120px);
     height: 120px;
     width: 100%;
@@ -112,6 +112,7 @@ button {
     background: #464646;
     height: $bodyHeight - 399px;
     position: relative
+  //轮播广告图
     .adPic {
       width: 545px;
       height: 860px;
@@ -130,6 +131,7 @@ button {
         }
       }
     }
+  //分类列表
     .category {
       width: 545px;
       center()
@@ -171,6 +173,105 @@ button {
         }
       }
     }
+  //商品详情页
+    .pt-info {
+      padding: 30px;
+      background: #fff;
+      height: 100%;
+      font-size 28px;
+      .title {
+        h3 {
+          font-size: 35px;
+          color: #000;
+          max-height: 92px;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size 30px
+          color: #999
+          max-height: 76px;
+          overflow: hidden;
+        }
+      }
+      .pt-price {
+        margin-top: 20px;
+        color: #999;
+        b {
+          font-size: 50px;
+          color: $orange;
+          i {
+            font-size: 25px;
+          }
+        }
+        span {
+          font-size: 28px;
+          float: right
+          margin-top: 12px;
+        }
+      }
+      .pt-btn {
+        padding-top: 30px;
+        margin-top: 20px;
+        border-top: 1px solid #ddd
+        button {
+          width: 255px;
+          height: 80px;
+          border: 1px solid $orange;
+          &.btnToCart {
+            bgc(#fff, $orange);
+            margin-right: 20px;
+          }
+          &.btnToBuy {
+            bgc($orange, #fff)
+          }
+        }
+      }
+      .pt-orther {
+        margin-top: 30px;
+        font-size 25px;
+        background: #f9f9f9;
+        padding: 25px 20px;
+        .item {
+          margin-bottom: 20px;
+          .label {
+            float: left;
+            color: #999;
+          }
+          p {
+            float: left;
+            width: 370px;
+            b {
+              bgc(#fff5f2, $orange)
+              display inline-block;
+              padding: 8px 10px;
+              margin: 10px 10px 0px 0;
+            }
+          }
+        }
+      }
+      .pt-toStore {
+        margin-top: 30px;
+        .toStore {
+          float: left;
+          width: 395px;
+          height: 80px;
+          border: 1px solid #ccc;
+          padding: 0 50px 0 10px;
+          line-height: 80px;
+        }
+        .toMap {
+          float: left;
+          width: 40px;
+          height: 45px;
+          background: #ebf5ff;
+          color: #5a8acb;
+          border: 1px solid #ccc;
+          padding: 15px 20px 20px 20px;
+          font-size: 20px;
+        }
+      }
+    }
   }
   .leftBtn {
     height: 280px;
@@ -209,6 +310,9 @@ button {
   //height: $bodyHeight - 180px;
     &.hasHead {
       padding-top: 150px;
+    }
+    &.pt-main {
+      padding-top: 120px;
     }
   }
 }
@@ -289,7 +393,7 @@ button {
   width: $bodyWidth - $leftWidth;
   height: $bodyHeight;
   background: rgba(0, 0, 0, .7);
-  z-index:11
+  z-index: 11
 }
 //主页-有目的地
 .startMain, .endMain {
@@ -472,9 +576,10 @@ button {
     button {
       border: 1px solid $orange;
       bgc(#fff, $orange)
-      padding: 20px 60px;
+      padding: 15px 60px;
       border-radius(4px)
       font-size: 30px;
+      float: right
     }
   }
   .list {
@@ -511,9 +616,166 @@ button {
             color: #999;
           }
         }
+        .pic {
+          float: right
+          li {
+            float: left;
+            width: 110px;
+            height: 110px;
+            border: 1px solid #ddd;
+            margin-left: 20px;
+          }
+        }
       }
 
     }
 
+  }
+}
+//弹窗
+.dialog_wrap {
+  position fixed;
+  right: 0;
+  top: 0px;
+  width: $bodyWidth - $leftWidth;
+  height: $bodyHeight;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 11
+  .dialog_box {
+    height: 100%;
+    padding: 0 30px;
+    .title {
+      height: 120px;
+      padding: 0 36px;
+      color: #fff;
+      font(35px, 120px)
+      .close {
+        float: right;
+      }
+    }
+    .content {
+      background: #fff;
+      height: $bodyHeight - 230px;
+      border-radius(10px)
+      padding: 80px 40px 0;
+    //订单确认
+      .chose-spec {
+        height: 920px;
+        overflow-y: auto;
+        .item {
+          font-size: 28px;
+          margin-bottom: 30px;
+          .label {
+            float: left
+            text-align: justify;
+            width: 180px;
+            margin: 20px 95px 0 20px;
+            span {
+              display inline-block
+              padding-left: 100%
+            }
+          }
+          p {
+            width: 1510px;
+            float: left;
+            b {
+              display inline-block;
+              bgc(#fff, $orange)
+              border: 1px solid $orange
+              padding: 20px 60px;
+              margin: 0 20px 20px 0;
+              border-radius ()
+              text-align center
+              transition()
+              &.act {
+                bgc()
+              }
+            }
+            & .num {
+              font-size 50px
+              button {
+                width: 70px;
+                height: 70px;
+                bgc()
+                &.reduce {
+                  margin-right: -17px;
+                }
+                &.plus {
+                  margin-left: -15px;
+                }
+              }
+              input {
+                height: 66px;
+                display: inline;
+                border: 2px solid $orange;
+                width: 100px;
+                text-align: center;
+                font-size: 30px;
+                margin-top: -6px;
+                color: $orange;
+              }
+            }
+          }
+        }
+      }
+      .btn {
+        border-top: 1px solid #ddd;
+        text-align: center;
+        padding-top: 35px;
+        button {
+          height: 90px;
+          border: 1px solid #ccc;
+          border-radius(4px)
+          font-size 30px;
+          &.chanel {
+            width: 200px;
+            color: #666;
+          }
+          &.ok {
+            bgc()
+            border-color: $orange;
+            width: 260px;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+
+  }
+}
+.add-commentQr {
+  margin: 300px auto 0
+  background: #fff;
+  width: 1000px;
+  height: 620px;
+  border-radius(10px)
+  padding-top: 70px;
+  position relative
+  h3 {
+    text-align center
+    border-bottom: 1px solid $orange
+    color: $orange;
+    height: 46px;
+    line-height: 90px;
+    font-size: 40px;
+    margin-bottom: 60px;
+    width: 580px;
+    margin: 0 auto 60px;
+    b {
+      display inline-block
+      background: #fff;
+      padding: 0 40px;
+    }
+  }
+  .qrPic {
+    width: 400px;
+    margin: 0 auto;
+  }
+  .close{
+    position: absolute;
+    top:-40px;
+    right:-40px;
+    color: #fff;
+    font-size 60px
   }
 }

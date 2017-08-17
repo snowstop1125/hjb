@@ -6,7 +6,7 @@
       <li :class='{act: changeShowType =="ptComment"}' @click="changeShowType='ptComment'"><a href="javascript:;">评论</a></li>
     </ul>
     <div class="right-main" style="overflow-y: visible">
-      <section v-show="changeShowType =='ptPic'" class="r_content hasHead clearfix" style="padding:120px 0 0;">
+      <section v-show="changeShowType =='ptPic'" class="r_content hasHead clearfix pt-main">
         <div class="pt-mainImg">
           <img :src="ptMainImg" />
         </div>
@@ -20,67 +20,76 @@
         </div>
       </section>
       <div id="ptDetail">
-        <section v-show="changeShowType =='ptDetail'" class="r_content hasHead wrapper">
-          <div>
-            <img src="https://img.alicdn.com/imgextra/i3/619123122/TB2gydepXXXXXcKXpXXXXXXXXXX-619123122.jpg" />
-            <img src="https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg" />
-          </div>
-        </section>
-        <section v-show="changeShowType =='ptComment'" class="r_content hasHead ">
-          <div class="commentMain">
-            <div class="head">
-              <span class="total-point">好评度：<i>{{totalPoint}}</i></span>
-              <span :class="{act:choseComment==0}" @click="choseComment=0">全部评价：78</span>
-              <span :class="{act:choseComment==1}" @click="choseComment=1">好评：58</span>
-              <span :class="{act:choseComment==2}" @click="choseComment=2">中评：18</span>
-              <span :class="{act:choseComment==3}" @click="choseComment=3">差评：58</span>
-              <button @click="addcomment">添加评论</button>
+        <div>
+          <section v-show="changeShowType =='ptDetail'" class="r_content hasHead wrapper">
+            <div>
+              <img src="https://img.alicdn.com/imgextra/i3/619123122/TB2gydepXXXXXcKXpXXXXXXXXXX-619123122.jpg" />
+              <img src="https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg" />
             </div>
-            <table class="list">
-              <tr class="clearfix">
-                <td width="300">
-                  <div class="member clearfix">
-                    <div class="avatar">
-                      <img src="http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png" alt="">
-                    </div>
-                    <div class="info">
-                      <div class="username">
-                        Yuki
+          </section>
+          <section v-show="changeShowType =='ptComment'" class="r_content hasHead ">
+            <div class="commentMain">
+              <div class="head">
+                <span class="total-point">好评度：<i>{{totalPoint}}</i></span>
+                <span :class="{act:choseComment==0}" @click="choseComment=0">全部评价：78</span>
+                <span :class="{act:choseComment==1}" @click="choseComment=1">好评：58</span>
+                <span :class="{act:choseComment==2}" @click="choseComment=2">中评：18</span>
+                <span :class="{act:choseComment==3}" @click="choseComment=3">差评：58</span>
+                <button @click="addcomment">添加评论</button>
+              </div>
+              <table class="list">
+                <tr class="clearfix" v-for="item in commentList">
+                  <td width="300">
+                    <div class="member clearfix">
+                      <div class="avatar">
+                        <img :src="item.avatarSrc">
+                      </div>
+                      <div class="info">
+                        <div class="username">{{item.username}}</div>
+                        <div class="level">{{item.level}}</div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td width="700">
-                  <div class="main">
-                    <p>完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，
-                      没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的</p>
-                    <p class="time">时间：2017-06-30 12:30</p>
-                  </div>
-                </td>
-                <td width="818" align="right">
-                  <ul class="pic">
-                    <li>
-                      <img src="https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg" />
-                    </li>
-                  </ul>
+                  </td>
+                  <td width="900">
+                    <div class="main">
+                      <p>{{item.commentTxt}}</p>
+                      <p class="time">时间：{{item.commentTime}}</p>
+                    </div>
+                  </td>
+                  <td >
+                    <ul class="pic clearfix">
+                      <li v-for="img in item.commentPic">
+                        <img :src="img" />
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </div>
 
-                </td>
+          </section>
+        </div>
 
-              </tr>
-            </table>
+      </div>
+
+    </div>
+    <transition name="fade">
+      <div class="dialog_wrap" v-if="diaLogComment">
+        <div class="dialog_box">
+          <div class="add-commentQr">
+            <h3><b>扫码评价</b></h3>
+            <div class="qrPic">
+              <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82"/>
+            </div>
+            <a class="close" href="javascript:;" @click="diaLogComment=false">×</a>
           </div>
 
-        </section>
-      </div>
-
-    </div>
-    <div class="diaLogComment" v-if="diaLogComment">
-      <div class="add-commentQr">
+        </div>
 
       </div>
+    </transition>
 
-      <div class="mask" @click="addcomment"></div>
-    </div>
+
 
   </div>
 </template>
@@ -108,7 +117,80 @@
                 ],//小图图片
                 choseComment: 0,//评论类型切换
                 totalPoint: '74%',
-                diaLogComment:false
+                diaLogComment:false,
+                commentList:[
+                    {
+                        avatarSrc:'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username:'候机宝',
+                        level:'V1',
+                        commentTxt:'完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime:'2017-06-30 12:30',
+                        commentPic:[
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg',
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    },
+                    {
+                        avatarSrc: 'http://fskb2c.wxt.com/public/app/b2c/statics/sprites/default-avatar.png',
+                        username: '候机宝',
+                        level: 'V1',
+                        commentTxt: '完美兼容，没有出现不匹配的没有出现不匹配的没有出现不匹配的完美兼容，没有出现不匹配的没有出现不匹配',
+                        commentTime: '2017-06-30 12:30',
+                        commentPic: [
+                            'https://img.alicdn.com/imgextra/i4/619123122/TB2RspapXXXXXXYXFXXXXXXXXXX-619123122.jpg'
+                        ]
+                    }
+                ]
             }
         },
 
@@ -161,14 +243,28 @@
 </script>
 
 <style>
-  /*.fade-choose-enter-active, .fade-choose-leave-active {*/
-  /*transition: opacity .5s;*/
-  /*}*/
-  /*.fade-choose-leave, .fade-choose-leave-active {*/
-  /*display: none;*/
-  /*}*/
-  /*.fade-choose-enter, .fade-choose-leave-active {*/
-  /*opacity: 0;*/
-  /*}*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+    opacity: 0
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transfrom: scale(0);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 </style>
 

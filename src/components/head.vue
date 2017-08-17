@@ -6,14 +6,16 @@
     </p>
     <button v-if="category" @click="showCategoryBox">分类</button>
     <div class="cover" v-if="isShow" @click="showCategoryBox"></div>
-    <div v-if="category" class="category-box" :class="{show:isShow}">
-      <h3>分类列表</h3>
-      <ol class="clearfix">
-        <li v-for="item in categoryList">
-          <router-link to="/gallery">{{item.name}}</router-link>
-        </li>
-      </ol>
-    </div>
+    <transition name="fade">
+      <div v-if="category" class="category-box" :class="{show:isShow}">
+        <h3>分类列表</h3>
+        <ol class="clearfix">
+          <li v-for="item in categoryList">
+            <router-link to="/gallery">{{item.name}}</router-link>
+          </li>
+        </ol>
+      </div>
+    </transition>
   </div>
 </template>
 
