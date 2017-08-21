@@ -26,7 +26,7 @@
         </ul>
       </div>
       <!--商品信息-->
-      <div class="pt-info" v-if="ptInfo">
+      <div class="pt-info" v-if="ptInfo || 1">
         <div class="title">
           <h3>日上香水 轻奢滋味日上香滋味日味 日上香</h3>
           <p>夏日优惠，买即赠</p>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <!--商家信息-->
-      <div class="store-info" v-if="storeInfo || 1">
+      <div class="store-info" v-if="storeInfo">
         <router-link class="focus" to="/store/">
           <img src="http://p0.meituan.net/dpdeal/067e4faaa54d7fb745883fe1d061b84b85966.jpg%40700w_700h_0e_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20"/>
           <p>日上免税店</p>
