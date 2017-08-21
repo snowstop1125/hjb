@@ -26,7 +26,7 @@
         </ul>
       </div>
       <!--商品信息-->
-      <div class="pt-info" v-if="ptInfo || 1">
+      <div class="pt-info" v-if="ptInfo">
         <div class="title">
           <h3>日上香水 轻奢滋味日上香滋味日味 日上香</h3>
           <p>夏日优惠，买即赠</p>
@@ -61,14 +61,39 @@
         </div>
       </div>
       <!--商家信息-->
-      <div class="store-info">
-
+      <div class="store-info" v-if="storeInfo || 1">
+        <router-link class="focus" to="/store/">
+          <img src="http://p0.meituan.net/dpdeal/067e4faaa54d7fb745883fe1d061b84b85966.jpg%40700w_700h_0e_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20"/>
+          <p>日上免税店</p>
+        </router-link>
+        <div class="store-orther">
+          <div class="item clearfix">
+            <span class="label">服务支持：</span>
+            <p style="margin-top: -17px;"><b>送至登机口</b><b>自提点自提</b><b>到店自提</b><b>货到付款</b></p>
+          </div>
+          <div class="item clearfix">
+            <span class="label">所在区域：</span>
+            <p>国际出发区域</p>
+          </div>
+          <div class="item clearfix">
+            <span class="label">服务电话：</span>
+            <p>0510-8936 2564</p>
+          </div>
+          <div class="item clearfix">
+            <span class="label">详细地址：</span>
+            <p>东三指廊，B112登机口附进东 三指廊，B112登机口附进附 进</p>
+          </div>
+        </div>
+        <div class="store-map">
+          <router-link to="">地图导航</router-link>
+        </div>
       </div>
     </section>
     <div class="leftBtn">
-      <router-link to="/cart">购物车</router-link>
-      <router-link class="search_btn" to="/search">搜索（商家/商品）</router-link>
+      <router-link to="/cart"><span @click="dialogOrder=false">购物车</span></router-link>
+      <router-link class="search_btn" to="/search"><span @click="dialogOrder=false">搜索（商家/商品）</span></router-link>
     </div>
+    <!--订单确认-->
     <transition name="fade">
       <div class="dialog_wrap" v-if="dialogOrder">
         <div class="dialog_box">
@@ -107,6 +132,7 @@
         </div>
       </div>
     </transition>
+    <!--扫码支付-->
     <transition name="fade">
       <div class="dialog_wrap" v-if="dialogPay">
         <div class="dialog_box">
@@ -115,8 +141,44 @@
             <i class="close" @click="dialogPay=false">×</i>
           </div>
           <div class="content">
-            <div class="chose-spec">
-
+            <div class="add-commentQr toPay">
+              <h3><b>扫码支付</b></h3>
+              <div class="qrPic">
+                <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82" />
+                <p>5分钟内扫码有效</p>
+              </div>
+            </div>
+            <div class="dialog-item">
+                <h3>流程说明</h3>
+              <ul class="clearfix">
+                <li>
+                  <div>
+                    <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82" />
+                  </div>
+                  <p>扫码付款</p>
+                </li>
+                <li class="r"></li>
+                <li>
+                  <div>
+                    <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82" />
+                  </div>
+                  <p>确认配送信息</p>
+                </li>
+                <li class="r"></li>
+                <li>
+                  <div>
+                    <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82" />
+                  </div>
+                  <p>短信发送</p>
+                </li>
+                <li class="r"></li>
+                <li>
+                  <div>
+                    <img src="https://qr.api.cli.im/qr?data=%25E5%2580%2599%25E6%259C%25BA%25E5%25AE%259D&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=e7cd54180fccdcdb599580bca9329e82" />
+                  </div>
+                  <p>等待配送</p>
+                </li>
+              </ul>
             </div>
 
           </div>
@@ -130,7 +192,7 @@
     import Swiper from '../../static/js/swiper.min.js'
 
     export default {
-        props: ['leftTitle', 'adPic', 'category', 'ptInfo'],
+        props: ['leftTitle', 'adPic', 'category', 'ptInfo', 'storeInfo'],
         data () {
             return {
                 adPics: [

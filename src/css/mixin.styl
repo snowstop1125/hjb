@@ -85,3 +85,15 @@ fj(type = space-between) {
   display: flex;
   justify-content: type;
 }
+//  省略号
+slh() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+dslh(n = 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:n;
+  overflow: hidden;
+}
