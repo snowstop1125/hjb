@@ -10,17 +10,17 @@
               <div class="head clearfix">
                 <div class="checkbox">
                   <!--全选item-->
-                  <input type="checkbox" :id="'checkbox_a'+ index" class="chk" />
+                  <input type="checkbox" :id="'checkbox_a'+ index" class="chk" v-model="list.isCheckedAll" @click="handleCheckAll(index)"/>
                   <label :for="'checkbox_a'+ index"></label>
                 </div>
                 <h4>{{list.storeName}}</h4>
                 <button class="coupon">领券</button>
               </div>
               <ul>
-                <li class="item clearfix" v-for="(item,index) in list.cartListItem">
+                <li class="item clearfix" v-for="(item,index2) in list.cartListItem">
                   <div class="checkbox">
-                    <input type="checkbox" :id="'checkbox_o' +index" class="chk" :checked="item.checkItem"/>
-                    <label :for="'checkbox_o' +index"></label>
+                    <input type="checkbox" :id="'checkbox_o' + index + index2" :value="item.id" class="chk" v-model="list.checkedItems"/>
+                    <label :for="'checkbox_o' + index + index2"></label>
                   </div>
                   <div class="pt-pic">
                     <img :src="item.ptPic" width="100px" />
@@ -79,7 +79,7 @@
                         'storeName': '日上免税店',
                         'cartListItem':[
                             {
-                                'checkItem':false,
+                                'id': '1',
                                 'ptPic':'http://img.zcool.cn/community/016fbb58c3ab7ca801219c77c24331.png',
                                 'ptName':'红烧红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉肉',
                                 'ptPrice':'108.00',
@@ -87,15 +87,32 @@
                                 'ptQuantity':1
                             },
                             {
-                                'checkItem': false,
+                                'id': '2',
                                 'ptPic': 'http://img.zcool.cn/community/016fbb58c3ab7ca801219c77c24331.png',
                                 'ptName': '红烧红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉肉',
                                 'ptPrice': '108.00',
                                 'ptSpec': '红色',
                                 'ptQuantity': 1
                             }
-                        ]
+                        ],
+                        'checkedItems':[],
+                        'isCheckedAll': false
                     },
+                    {
+                        'storeName': '日上免税店',
+                        'cartListItem': [
+                            {
+                                'id': '1',
+                                'ptPic': 'http://img.zcool.cn/community/016fbb58c3ab7ca801219c77c24331.png',
+                                'ptName': '红烧红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉肉',
+                                'ptPrice': '108.00',
+                                'ptSpec': '红色',
+                                'ptQuantity': 1
+                            }
+                        ],
+                        'checkedItems': [],
+                        'isCheckedAll': false
+                    }
 
                 ],
             }
@@ -110,11 +127,35 @@
             },
             plusBtn(){
                 this.ptQuantity++;
+            },
+            handleCheckAll(index) {
+                if (this.cartList[index].isCheckedAll) {
+                    this.cartList[index].checkedItems = this.cartList[index].cartListItem.map(item => {
+                        return item.id;
+                    }
+                )
+                } else {
+                    this.cartList[index].checkedItems = []
+                }
             }
         },
         computed: {
             airportName: function () {
                 return '(' + this.airport + ')'
+            }
+        },
+        watch: {
+            'cartList': {
+                handler: function(newValue, oldValue) {
+                    this.cartList.map(list => {
+                        if(list.checkedItems.length === list.cartListItem.length) {
+                          list.isCheckedAll = true;
+                        } else {
+                          list.isCheckedAll = false;
+                        }
+                    });
+                },
+                deep: true
             }
         }
     }
