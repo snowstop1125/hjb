@@ -10,7 +10,7 @@
               <div class="head clearfix">
                 <div class="checkbox">
                   <!--全选item-->
-                  <input type="checkbox" :id="'checkbox_a'+ index" class="chk" v-model="list.isCheckedAll" @click="handleCheckAll(index)"/>
+                  <input type="checkbox" :id="'checkbox_a'+ index" class="chk" :value="list.storeId" v-model="list.isCheckedAll" @click="handleCheckAll(index)" />
                   <label :for="'checkbox_a'+ index"></label>
                 </div>
                 <h4>{{list.storeName}}</h4>
@@ -19,7 +19,7 @@
               <ul>
                 <li class="item clearfix" v-for="(item,index2) in list.cartListItem">
                   <div class="checkbox">
-                    <input type="checkbox" :id="'checkbox_o' + index + index2" :value="item.id" class="chk" v-model="list.checkedItems"/>
+                    <input type="checkbox" :id="'checkbox_o' + index + index2" :value="item.id" class="chk" v-model="list.checkedItems" />
                     <label :for="'checkbox_o' + index + index2"></label>
                   </div>
                   <div class="pt-pic">
@@ -47,7 +47,7 @@
       <div class="cart-foot">
         <div class="foot-l">
           <span class="checkbox">
-            <input type="checkbox" id="checkbox_all" class="chk" />
+            <input type="checkbox" id="checkbox_all" class="chk" v-model="isCheckedAllCart"  />
             <label for="checkbox_all"></label>
             <span>全选</span>
           </span>
@@ -74,17 +74,20 @@
             return {
                 airport: '广州机场',
                 headTitle: '购物车',
+                isCheckedAllCart: false,
+                checkedLists:[],
                 cartList: [
                     {
+                        'storeId':'1',
                         'storeName': '日上免税店',
-                        'cartListItem':[
+                        'cartListItem': [
                             {
                                 'id': '1',
-                                'ptPic':'http://img.zcool.cn/community/016fbb58c3ab7ca801219c77c24331.png',
-                                'ptName':'红烧红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉肉',
-                                'ptPrice':'108.00',
-                                'ptSpec':'红色',
-                                'ptQuantity':1
+                                'ptPic': 'http://img.zcool.cn/community/016fbb58c3ab7ca801219c77c24331.png',
+                                'ptName': '红烧红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉红烧肉肉',
+                                'ptPrice': '108.00',
+                                'ptSpec': '红色',
+                                'ptQuantity': 1
                             },
                             {
                                 'id': '2',
@@ -95,10 +98,11 @@
                                 'ptQuantity': 1
                             }
                         ],
-                        'checkedItems':[],
+                        'checkedItems': [],
                         'isCheckedAll': false
                     },
                     {
+                        'storeId': '2',
                         'storeName': '日上免税店',
                         'cartListItem': [
                             {
@@ -132,8 +136,7 @@
                 if (this.cartList[index].isCheckedAll) {
                     this.cartList[index].checkedItems = this.cartList[index].cartListItem.map(item => {
                         return item.id;
-                    }
-                )
+                    })
                 } else {
                     this.cartList[index].checkedItems = []
                 }
@@ -146,17 +149,18 @@
         },
         watch: {
             'cartList': {
-                handler: function(newValue, oldValue) {
+                handler: function (newValue, oldValue) {
                     this.cartList.map(list => {
-                        if(list.checkedItems.length === list.cartListItem.length) {
-                          list.isCheckedAll = true;
+                        if (list.checkedItems.length === list.cartListItem.length) {
+                            list.isCheckedAll = true;
                         } else {
-                          list.isCheckedAll = false;
+                            list.isCheckedAll = false;
                         }
                     });
                 },
                 deep: true
-            }
+            },
+
         }
     }
 </script>

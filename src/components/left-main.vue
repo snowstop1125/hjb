@@ -105,8 +105,8 @@
             <div class="chose-spec">
               <div class="item clearfix" v-for="(item,index) in ptSpec">
                 <div class="label">{{item.specName}}<span></span></div>
-                <p :index="index">
-                  <b v-for="(b,index) in item.specChose" :class="{act:item.specIdx==index}" @click="choseSpec($event,index)">
+                <p>
+                  <b v-for="(b,index2) in item.specChose" :class="{act:item.specIdx==index2}" @click="choseSpec(index,index2)">
                     {{b}}
                   </b>
                 </p>
@@ -233,7 +233,6 @@
             }
         },
         mounted(){
-//            this.lunbo()
             var myswiper = new Swiper('.swiper-container', {
                 autoplay: 3000,
                 pagination: '.swiper-pagination',
@@ -241,16 +240,9 @@
             })
         },
         methods: {
-            lunbo () {
-                var myswiper = new Swiper('.swiper-container', {
-                    autoplay: 3000,
-                    pagination: '.swiper-pagination',
-                    loop: true
-                })
-            },
-            reverseMessage: function () {
-                this.message = this.message.split('').reverse().join('')
-            },
+//            reverseMessage: function () {
+//                this.message = this.message.split('').reverse().join('')
+//            },
             openChoseSpec(type){
                 if(this.dialogPay == true){
                     return;
@@ -271,11 +263,8 @@
                     this.dialogPay = true;
                 }
             },
-            choseSpec(event, idx){
-                let e = event.currentTarget
-                let p = e.parentNode;
-                let pIdx = p.getAttribute("index")
-                this.ptSpec[pIdx].specIdx = idx
+            choseSpec(idx,idx2){
+                this.ptSpec[idx].specIdx = idx2
             },
             reduceBtn(){
                 if (this.ptQuantity == 1) {

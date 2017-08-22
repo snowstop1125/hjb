@@ -8,6 +8,7 @@ const search = r => require.ensure([], () => r(require('../views/search')), 'sea
 const gallery = r => require.ensure([], () => r(require('../views/gallery')), 'gallery')
 const product = r => require.ensure([], () => r(require('../views/product')), 'product')
 const store = r => require.ensure([], () => r(require('../views/store')), 'store')
+const orderDetail = r => require.ensure([], () => r(require('../views/orderDetail')), 'orderDetail')
 
 Vue.use(Router)
 
@@ -62,6 +63,14 @@ export default new Router({
             name: '商家主页',
             components: {
                 default: store,
+                leftMain: leftMain
+            },
+        },
+        {
+            path: '/orderDetail/',
+            name: '结算反馈',
+            components: {
+                default: orderDetail,
                 leftMain: leftMain
             },
         }
