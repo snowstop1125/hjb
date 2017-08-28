@@ -11,9 +11,9 @@
               <option>商品</option>
               <option>商家</option>
             </select>
-            <span></span>
+            <i class="bg-sprites bg-arrow3"></i>
           </div>
-          <router-link class="searchBtn" to="/gallery">搜索</router-link>
+          <router-link class="searchBtn bg-sprites" to="/gallery"></router-link>
         </div>
         <div class="hot-search">
           <h4>热门搜索</h4>
@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script >
     import leftMain from '../components/left-main'
     import headMain from '../components/head'
     import $ from 'jquery'
@@ -106,7 +106,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style >
   div.jqcloud {
     font-family: "Helvetica", "Arial", sans-serif;
     font-size:25px;

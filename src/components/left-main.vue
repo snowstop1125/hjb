@@ -26,7 +26,7 @@
         </ul>
       </div>
       <!--商品信息-->
-      <div class="pt-info" v-if="ptInfo || 1">
+      <div class="pt-info" v-if="ptInfo">
         <div class="title">
           <h3>日上香水 轻奢滋味日上香滋味日味 日上香</h3>
           <p>夏日优惠，买即赠</p>
@@ -53,7 +53,7 @@
         <div class="pt-toStore clearfix">
           <router-link to="" class="toStore">
             日上专卖店
-            <i></i>
+            <i class="bg-sprites"></i>
           </router-link>
           <router-link to="" class="toMap">
             地图导航
@@ -61,7 +61,7 @@
         </div>
       </div>
       <!--商家信息-->
-      <div class="store-info" v-if="storeInfo">
+      <div class="store-info" v-if="storeInfo || 1">
         <router-link class="focus" to="/store/">
           <img src="http://p0.meituan.net/dpdeal/067e4faaa54d7fb745883fe1d061b84b85966.jpg%40700w_700h_0e_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20"/>
           <p>日上免税店</p>
@@ -85,13 +85,13 @@
           </div>
         </div>
         <div class="store-map">
-          <router-link to="">地图导航</router-link>
+          <router-link to=""><i class="bg-sprites bg-map2"></i>地图导航</router-link>
         </div>
       </div>
     </section>
     <div class="leftBtn">
-      <router-link to="/cart"><span @click="dialogOrder=false">购物车</span></router-link>
-      <router-link class="search_btn" to="/search"><span @click="dialogOrder=false">搜索（商家/商品）</span></router-link>
+      <router-link to="/cart"><span @click="dialogOrder=false"><i class="bg-sprites bg-cat"></i>购物车</span></router-link>
+      <router-link class="search_btn" to="/search"><span @click="dialogOrder=false"><i class="bg-sprites bg-search"></i>搜索（商家/商品）</span></router-link>
     </div>
     <!--订单确认-->
     <transition name="fade">
@@ -99,7 +99,7 @@
         <div class="dialog_box">
           <div class="title">
             订单确认
-            <i class="close" @click="dialogOrder=false">×</i>
+            <i class="close bg-sprites" @click="dialogOrder=false"></i>
           </div>
           <div class="content">
             <div class="chose-spec">
@@ -138,7 +138,7 @@
         <div class="dialog_box">
           <div class="title">
             结算和配送说明
-            <i class="close" @click="dialogPay=false">×</i>
+            <i class="close bg-sprites" @click="dialogPay=false"></i>
           </div>
           <div class="content">
             <div class="add-commentQr toPay">

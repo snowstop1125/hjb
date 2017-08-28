@@ -47,7 +47,7 @@
               </p>
               <p>
                 <span class="label">日上免税店地址</span>
-                <b>上海虹桥机场XXXXXXXX号 <button class="tomap">导航</button></b>
+                <b>上海虹桥机场XXXXXXXX号 <button class="tomap"><i class="bg-sprites bg-map"></i>导航</button></b>
               </p>
             </div>
 

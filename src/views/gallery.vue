@@ -43,7 +43,7 @@
         <div class="dialog_box">
           <div class="title">
             结算和配送说明
-            <i class="close" @click="dialogPay=false">×</i>
+            <i class="close bg-sprites" @click="dialogPay=false"></i>
           </div>
           <div class="content">
             <div class="add-commentQr toPay">

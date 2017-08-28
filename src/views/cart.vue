@@ -29,13 +29,13 @@
                     <p>{{item.ptName}}</p>
                     <span class="pt-price"><i>￥</i>{{item.ptPrice}}</span>
                   </div>
-                  <div class="del-item">×</div>
+                  <div class="del-item bg-sprites bg-del" @click="deleteItem(index,index2)"></div>
                   <div class="pt-other">
                     <p class="spec">{{item.ptSpec}}</p>
                     <p class="pt-quantity">
-                      <button class="reduce" @click="reduceBtn">-</button>
+                      <button class="reduce" @click="reduceBtn(index,index2)">-</button>
                       <input type="text" v-model="item.ptQuantity" />
-                      <button class="plus" @click="plusBtn">+</button>
+                      <button class="plus" @click="plusBtn(index,index2)">+</button>
                     </p>
                   </div>
                 </li>
@@ -122,15 +122,24 @@
             }
         },
         methods: {
-            reduceBtn(){
-                if (this.ptQuantity == 1) {
+            reduceBtn(idx,idx2){
+                var num= this.cartList[idx].cartListItem[idx2].ptQuantity;
+                if (num == 1) {
                     return
                 } else {
-                    this.ptQuantity--;
+                    this.cartList[idx].cartListItem[idx2].ptQuantity--;
                 }
             },
-            plusBtn(){
-                this.ptQuantity++;
+            plusBtn(idx,idx2){
+                this.cartList[idx].cartListItem[idx2].ptQuantity++;
+            },
+            deleteItem(idx, idx2){
+                var item=this.cartList[idx].cartListItem
+                if(item.length==1){
+                    this.cartList.splice(idx, 1)
+                }else{
+                    item.splice(idx2, 1);
+                }
             },
             handleCheckAll(index) {
                 if (this.cartList[index].isCheckedAll) {
